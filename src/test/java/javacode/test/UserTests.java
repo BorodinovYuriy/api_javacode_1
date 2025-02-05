@@ -3,6 +3,7 @@ package javacode.test;
 import javacode.base.BaseTest;
 import javacode.base.GetToken;
 import javacode.helper.MongoDBHelper;
+import javacode.steps.CanAddUserSteps;
 import javacode.steps.CanGetUserByAuthSteps;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,28 +28,57 @@ public class UserTests extends BaseTest {
             mongo = new MongoDBHelper(properties);
         }
     }
-//------------------------------------------------------------------------------------//
+//----------------------------------
     @Test(description = "Авторизация на портале")
     void canGetUserByLogin() {
         CanGetUserByAuthSteps auth = new CanGetUserByAuthSteps(mongo);
-        auth
-                .sendPOSTAuth(properties, requestSpec)
-                .stat200()
-                .checkBodyJSON(responseSpec)
-                .checkInMongo(properties.getProperty("mongoCollectionUsers"));
+            auth
+                    .sendPOST(properties, requestSpec, token)
+                    .stat200()
+                    .checkBodyJSON(responseSpec)
+                    .checkInMongo(properties.getProperty("mongoCollectionUsers"));
     }
-    @Test
-    void test1(){}
-    @Test
-    void test2(){}
-    @Test
-    void test3(){}
-    @Test
-    void test4(){}
-    @Test
-    void test5(){}
-    @Test
-    void test6(){}
+    @Test(description = "Добавление нового пользавателя")
+    void canAddUser(){
+        CanAddUserSteps addUser = new CanAddUserSteps(mongo);
+            addUser
+                    .sendPOST(properties, requestSpec, token)
+                    .stat200()
+                    .checkBodyJSON(responseSpec)
+                    .checkInMongo(properties.getProperty("mongoCollectionUsers"));
+
+    }
+    @Test(description = "Добавление вопроса")
+    public void canAddQuestion() {
+    }
+
+    @Test(description = "Редактирование вопроса")
+    public void canEditQuestion() {
+    }
+
+    @Test(description = "Добавление квиза")
+    public void canAddQuiz() {
+    }
+
+    @Test(description = "Добавление модуля")
+    public void canAddModule() {
+    }
+
+    @Test(description = "Добавление курса")
+    public void canAddCurse() {
+    }
+
+    @Test(description = "Добавление экзамена")
+    public void canAddExam() {
+    }
+
+    @Test(description = "Добавление темплейта")
+    public void canAddTemplate() {
+    }
+
+    @Test(description = "Авторизация с неверным логином или паролем")
+    public void wrongCredential() {
+    }
 
 
 

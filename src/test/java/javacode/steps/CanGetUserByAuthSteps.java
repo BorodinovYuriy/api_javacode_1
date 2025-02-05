@@ -13,7 +13,6 @@ import javacode.helper.MongoDBHelper;
 import org.bson.Document;
 import org.testng.Assert;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -21,16 +20,16 @@ import java.util.Properties;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 
-public class CanGetUserByAuthSteps {
+public class CanGetUserByAuthSteps extends BaseSteps implements BaseMethods{
 
     Response response = null;
-    MongoDBHelper mongo;
 
     public CanGetUserByAuthSteps(MongoDBHelper mongo) {
-        this.mongo = mongo;
+        super.mongo = mongo;
     }
     @Step("Отправить POST запрос https://aqa-api.javacode.ru/api/auth/login")
-    public CanGetUserByAuthSteps sendPOSTAuth(Properties properties, RequestSpecification requestSpec){
+    @Override
+    public CanGetUserByAuthSteps sendPOST(Properties properties, RequestSpecification requestSpec, String token){
 
         Map<String,String> requestAuthData = new HashMap<>();
         requestAuthData.put("username", properties.getProperty("username"));
@@ -44,28 +43,22 @@ public class CanGetUserByAuthSteps {
         return this;
     }
     @Step("Проверить код состояния")
+    @Override
     public CanGetUserByAuthSteps stat200(){
-        if (response != null){
-            response
-                    .then()
-                    .statusCode(200);
-        }
+        status200(response);
         return this;
     }
     @Step("Проверить тело ответа от сервера")
+    @Override
     public CanGetUserByAuthSteps checkBodyJSON(ResponseSpecification responseSpecification){
-        if (response != null){
-            response
-                    .then()
-                    .spec(responseSpecification)
-                    .assertThat()
-                    .body(matchesJsonSchema(
-                            new File("src/test/resources/json_schema/user_auth_schema.json"))
-                    );
-        }
+        checkJsonAndResponse(
+                response,
+                responseSpecification,
+                "user_auth_schema.json");
         return this;
     }
     @Step("Подключиться к базе и сравнить данные")
+    @Override
     public void checkInMongo(String collectionName) {
         int userIdFromResponse = response.jsonPath().getInt("user._id");
         String usernameFromResponse = response.jsonPath().getString("user.username");

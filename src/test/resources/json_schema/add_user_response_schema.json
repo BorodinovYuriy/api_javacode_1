@@ -1,0 +1,113 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "description": "User ID"
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of teams"
+        },
+        "surname": {
+          "type": "string",
+          "description": "User's surname"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "username": {
+          "type": "string",
+          "description": "User's username"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User's email address"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "Array of user roles"
+        },
+        "positions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of user positions"
+        },
+        "plain_password": {
+          "type": "string",
+          "description": "Plain password (should be empty)"
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of cities"
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of companies"
+        },
+        "work_history": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of work history"
+        },
+        "edu_history": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of education history"
+        },
+        "cd": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation date (ISO 8601 date-time format)"
+        },
+        "password": {
+          "type": "string",
+          "description": "Hashed password"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the user"
+        }
+      },
+      "required": [
+        "_id",
+        "surname",
+        "first_name",
+        "username",
+        "email",
+        "roles",
+        "cd",
+        "password",
+        "name"
+      ],
+      "description": "User data"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

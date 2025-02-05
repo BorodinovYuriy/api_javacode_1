@@ -6,28 +6,22 @@ import com.github.javafaker.Faker;
 public class Data {
     static Faker faker = new Faker();
 
-    public static String makeUsername(){
+    public static String makeUsername() {
         return faker.name().username();
     }
-    public static String makePassword(){
+
+    public static String makePassword() {
         return faker.internet().password();
     }
-    public static CharSequence makeName() {
+
+    public static String makeName() {
         return faker.name().name();
     }
-    public static CharSequence makeCountry() {
-        return faker.address().country();
+
+    public static String makeSurname() {
+        return faker.name().lastName();
     }
-    public static CharSequence makeCity() {
-        return faker.address().city();
-    }
-    public static CharSequence makeCard() {
-        return faker.number().digits(16);
-    }
-    public static CharSequence makeMonth() {
-        return faker.number().digits(1);
-    }
-    public static CharSequence makeYear() {
-        return faker.number().digits(4);
+    public static String makeEmail() {
+        return faker.internet().emailAddress();
     }
 }

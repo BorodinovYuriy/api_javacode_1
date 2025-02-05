@@ -27,11 +27,11 @@ public class GetToken extends BaseTest {
                 .response();
 
         String token = response.jsonPath().getString("token");
-        Assert.assertNotNull(token, "Токен не получен");
+        Assert.assertNotNull(token, "Токен не получен!");
 
         setAccessToken(token);
 
-        System.out.println("Токен получен!");
+        System.out.println("Токен получен! " +token);
     }
 
 }
