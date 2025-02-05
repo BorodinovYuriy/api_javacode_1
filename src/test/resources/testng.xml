@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/home/aditone/IdeaProjects/api_javacode_1">
+        <classes>
+            <class name="javacode.base.GetToken">
+                <methods>
+                    <include name="canGetAccessToken"/>
+                </methods>
+            </class>
+            <class name="javacode.test.UserTests">
+<!--                <methods>-->
+<!--                    <include name="canGetUserByLogin"/>-->
+<!--                    <include name="test"/>-->
+<!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+</suite>

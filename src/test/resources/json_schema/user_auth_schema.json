@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "JWT Access Token"
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "JWT Refresh Token"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "description": "User ID"
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "surname": {
+          "type": "string",
+          "description": "User's surname"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "username": {
+          "type": "string",
+          "description": "User's username"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "positions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "plain_password": {
+          "type": "string",
+          "description": "Plain password (should be empty)",
+          "nullable": true
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "work_history": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "edu_history": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "nullable": true
+        },
+        "cd": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation date (ISO 8601 date-time format)"
+        },
+        "password": {
+          "type": "string",
+          "description": "Hashed password"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the user"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User's email address"
+        }
+      },
+      "required": [
+        "_id",
+        "surname",
+        "first_name",
+        "username",
+        "roles",
+        "password",
+        "name",
+        "email"
+      ]
+    }
+  },
+  "required": [
+    "token",
+    "refresh_token",
+    "user"
+  ]
+}
